@@ -10,7 +10,11 @@ app.use(cors())
 
 app.route('/api/therm')
   .get(async (req, res) => {
-    return res.send(await sensor.getTemperatureData())
+    try {
+      return res.send(await sensor.getTemperatureData())
+    } catch (e) {
+      return res.send('Something went wrong', 500)
+    }
   })
   .put((req, res) => {
     res.send('Updated desired temp state! (not really)')
