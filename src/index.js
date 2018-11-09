@@ -13,7 +13,7 @@ app.route('/api/therm')
     try {
       return res.send(await sensor.getTemperatureData())
     } catch (e) {
-      return res.send('Something went wrong', 500)
+      return res.status(500).send(`Something went wrong: ${e.message}`)
     }
   })
   .put((req, res) => {
