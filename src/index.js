@@ -3,12 +3,14 @@ const app = express()
 const bodyParser = require('body-parser')
 const cors = require('cors')
 
+const sensor = require('./interfaces/therm.js')
+
 app.use(bodyParser.json())
 app.use(cors())
 
 app.route('/api/therm')
   .get((req, res) => {
-    res.send({'termp': 33, 'humidity': 0.60})
+    return res.send(sensor.getTemperatureData())
   })
   .put((req, res) => {
     res.send('Updated desired temp state! (not really)')
