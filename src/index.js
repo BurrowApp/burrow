@@ -9,8 +9,8 @@ app.use(bodyParser.json())
 app.use(cors())
 
 app.route('/api/therm')
-  .get((req, res) => {
-    return res.send(sensor.getTemperatureData())
+  .get(async (req, res) => {
+    return res.send(await sensor.getTemperatureData())
   })
   .put((req, res) => {
     res.send('Updated desired temp state! (not really)')
