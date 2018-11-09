@@ -20,6 +20,7 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "johnny-five": "^1.0.0",
+    "node-dht-sensor": "0.0.34",
     "raspi-io": "^9.0.0"
   }
 }
