@@ -47,7 +47,7 @@ app.route('/api/system')
     }
   })
 
-app.route('/api/schedule/away')
+app.route('/api/schedule')
   .post((req, res) => {
     try {
       store.setAway(req.body)
