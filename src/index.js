@@ -39,7 +39,12 @@ app.route('/api/system')
     }
   })
   .put((req, res) => {
-    res.send('updated system state (not really)')
+    try {
+      store.setSystemState(req.body)
+      res.send('Success')
+    } catch (e) {
+      return res.status(500).send(`Something went wrong: ${e.message}`)
+    }
   })
 
 app.route('/api/schedule/away/:timestamp')
