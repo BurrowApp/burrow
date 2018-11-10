@@ -1,8 +1,8 @@
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const express = require('express')
-const sensor = require('./interfaces/therm.js')
 const store = require('./core/store.js')
+require('./interfaces/therm.js')
 require('./core/manager.js')
 require('./interfaces/relay.js')
 
@@ -14,7 +14,7 @@ app.use(cors())
 app.route('/api/therm')
   .get(async (req, res) => {
     try {
-      const tempData = await sensor.getTemperatureData()
+      const tempData = store.getCurrentTemp()
       const targetTemp = store.getTargetTemp()
       return res.send({tempData, targetTemp})
     } catch (e) {
