@@ -9,7 +9,7 @@ require('./interfaces/relay.js')
 const app = express()
 
 app.use(bodyParser.json())
-app.use(cors())
+app.use(cors({allowedOrigins: ['*']}))
 
 app.route('/api/therm')
   .get(async (req, res) => {
