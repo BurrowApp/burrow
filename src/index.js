@@ -1,9 +1,10 @@
-const express = require('express')
-const app = express()
 const bodyParser = require('body-parser')
 const cors = require('cors')
-
+const express = require('express')
 const sensor = require('./interfaces/therm.js')
+const store = require('./core/store.js')
+
+const app = express()
 
 app.use(bodyParser.json())
 app.use(cors())
@@ -17,7 +18,12 @@ app.route('/api/therm')
     }
   })
   .put((req, res) => {
-    res.send('Updated desired temp state! (not really)')
+    try {
+      store.setTargetTemp(req.body)
+      res.send('Success')
+    } catch (e) {
+      return res.status(500).send(`Something went wrong: ${e.message}`)
+    }
   })
 
 app.route('/api/system')
