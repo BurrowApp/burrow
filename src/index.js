@@ -32,12 +32,11 @@ app.route('/api/therm')
 
 app.route('/api/system')
   .get((req, res) => {
-    const systemStateObject = {
-      'fan': false,
-      'system': false,
-      'mode': 'h'
+    try {
+      res.send(store.getSystemState())
+    } catch (e) {
+      return res.status(500).send(`Something went wrong: ${e.message}`)
     }
-    res.send(systemStateObject)
   })
   .put((req, res) => {
     res.send('updated system state (not really)')
