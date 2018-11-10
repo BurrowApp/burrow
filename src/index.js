@@ -3,6 +3,8 @@ const cors = require('cors')
 const express = require('express')
 const sensor = require('./interfaces/therm.js')
 const store = require('./core/store.js')
+require('./core/manager.js')
+require('./interfaces/relay.js')
 
 const app = express()
 
