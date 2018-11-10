@@ -47,9 +47,21 @@ app.route('/api/system')
     }
   })
 
-app.route('/api/schedule/away/:timestamp')
+app.route('/api/schedule/away')
   .post((req, res) => {
-    res.send(`Set the system to "away" ${req.params.timestamp}`)
+    try {
+      store.setAway(req.body)
+      res.send('success')
+    } catch (e) {
+      return res.status(500).send(`Something went wrong: ${e.message}`)
+    }
+  })
+  .get((req, res) => {
+    try {
+      return res.send(store.getAway())
+    } catch (e) {
+      return res.status(500).send(`Something went wrong: ${e.message}`)
+    }
   })
 
 app.route('/api/weather/:zip')
