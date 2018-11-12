@@ -22,6 +22,7 @@
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "johnny-five": "^1.0.0",
+    "lokijs": "^1.5.5",
     "node-dht-sensor": "0.0.34",
     "raspi-io": "^9.0.0"
   }
